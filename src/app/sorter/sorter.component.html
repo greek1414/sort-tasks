@@ -1,0 +1,20 @@
+<div *ngIf="done">
+  <p>Sorter has {{ items.length }} items to work through</p>
+  <input type="button" value="Sort!" (click)="initSort()" />
+  <input type="button" value="Back to Inputs" (click)="abort()" />
+  <div *ngFor="let item of items">{{ item }}</div>
+</div>
+
+<div *ngIf="!done">
+  <p>These two items are being compared</p>
+  <input
+    type="button"
+    (click)="save(a, b); sortStep()"
+    [(ngModel)]="items[a]"
+  />
+  <input
+    type="button"
+    (click)="save(b, a); sortStep()"
+    [(ngModel)]="items[b]"
+  />
+</div>

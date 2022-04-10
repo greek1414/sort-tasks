@@ -1,0 +1,20 @@
+<div *ngIf="inputStage" id="inputfeed">
+  <p>This is where the user will enter their input</p>
+  <div *ngFor="let item of items">{{ item }}</div>
+  <p>New items pls</p>
+  <input
+    #itemcreator
+    (keyup.enter)="addItem(itemcreator.value); itemcreator.value = ''"
+  />
+  <p>
+    <input type="button" value="Clear" (click)="onClear()" />
+    <input type="button" value="Ready!" (click)="onHide()" />
+  </p>
+</div>
+
+<app-sorter
+  *ngIf="!inputStage"
+  [items]="items"
+  [isActive]="!inputStage"
+  (isActiveChange)="inputStage = !$event"
+></app-sorter>
